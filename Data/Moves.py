@@ -29,5 +29,8 @@ def get_move(move):
 
 
 def get_moves_names():
-    return get_moves().keys()
+    names_dict = dict()
+    for key, value in get_moves().items():
+        names_dict[key] = value['name']
+    return names_dict
 
