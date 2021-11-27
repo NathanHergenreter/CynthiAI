@@ -7,19 +7,11 @@
 import json
 import sys
 
-
-# In[2]:
-
-
 def get_types():
     file = open(sys.path[0] + '/../Data/typeChart.json')
     typesDict = json.load(file)
     file.close()
     return typesDict
-
-
-# In[22]:
-
 
 def get_type(typ):
     typeKey = typ.lower().capitalize()
@@ -29,10 +21,6 @@ def get_type(typ):
             return typeDict
         
     return typesDict[0]
-
-
-# In[39]:
-
 
 def get_type_effectiveness(typeOf, typeTarget):
     typeOfDict = get_type(typeOf)
@@ -50,10 +38,6 @@ def get_type_effectiveness(typeOf, typeTarget):
 
 def get_type_effectiveness_two(typeOf, typeTarget1, typeTarget2):
     return get_type_effectiveness(typeOf, typeTarget1) * get_type_effectiveness(typeOf, typeTarget2)
-
-
-# In[48]:
-
 
 def get_type_weakness(typesOf, typesOpponent):
     weakness = 1

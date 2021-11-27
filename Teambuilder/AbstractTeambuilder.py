@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[19]:
-
-
 import random
 import numpy as np
 
@@ -15,10 +12,6 @@ module_path = os.path.abspath(os.path.join('..'))
 if module_path not in sys.path:
     sys.path.append(module_path)
 
-
-# In[18]:
-
-
 from poke_env.teambuilder.teambuilder import Teambuilder
 
 from TeamSelectionTable.AbilitySelectionQTable import *
@@ -27,15 +20,28 @@ from TeamSelectionTable.MoveSelectionQTable import *
 from TeamSelectionTable.NatureSelectionQTable import *
 from TeamSelectionTable.PokemonSelectionQTable import *
 
-
-# In[22]:
-
-
 class AbstractTeambuilder(Teambuilder):
+    
+    def __init__(self):
+        self.team = []
     
     @staticmethod
     def GetEVsDict():
         return { 'HP': 0, 'Atk': 0, 'SpA': 0, 'Def': 0, 'SpD': 0, 'Spe': 0 }
+        
+    def CombineTeam(self, pokemon_list):
+        for mon in pokemon_list:
+            self.team.append(mon)
+           
+        return self.TeamString(self.team)
+    
+    def TeamString(self, team):
+        teamString = ''
+        for mon in team:
+            mon_string = self.GetPokemonString(mon['name'], mon['gender'], mon['item'], mon['ability'], mon['evs'], mon['nature'], mon['moves'])
+            teamString += '\n' + mon_string
+            
+        return teamString
     
     @staticmethod
     def GetPokemonString(pokemon, gender, item, ability, evs, nature, moves):
@@ -65,14 +71,6 @@ class AbstractTeambuilder(Teambuilder):
         pokemonString += '- ' + moves[3].lower().title() + '\n'
         
         return pokemonString
-        
-    @staticmethod
-    def CombineTeam(pokemon_list):
-        teamString = ''
-        for mon in pokemon_list:
-            teamString += '\n' + mon
-            
-        return teamString
     
     @staticmethod
     def RandomGender(pokemon_dex):
