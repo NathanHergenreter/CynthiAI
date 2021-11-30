@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
-
-
 import json
 import os
 import sys
@@ -14,9 +11,7 @@ if module_path not in sys.path:
 
 table_record_file_dir = sys.path[0] + '/../ActionSelectionTable/Records/MoveUserSelectionTable.json'
 
-
-# In[3]:
-
+from QLearning.QLearnerSimplePokemon import *
 
 # Returns existing move-by-user-pokemon selection table recorded as json
 # If no json exists, returns empty dictionary
@@ -35,4 +30,7 @@ def record_move_user_selection_table(table):
 
 def reset_move_user_selection_table_record():
     record_move_user_selection_table(dict())
+    
+def get_move_user_q_learner(alpha, discount):
+    return QLearnerSimplePokemon(get_move_user_selection_table(), alpha, discount)
 

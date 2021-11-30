@@ -11,6 +11,8 @@ if module_path not in sys.path:
 
 table_record_file_dir = sys.path[0] + '/../ActionSelectionTable/Records/MoveTargetSelectionTable.json'
 
+from QLearning.QLearnerSimplePokemon import *
+
 # Returns existing move-by-target-pokemon selection table recorded as json
 # If no json exists, returns empty dictionary
 def get_move_target_selection_table():
@@ -28,3 +30,6 @@ def record_move_target_selection_table(table):
 
 def reset_move_target_selection_table_record():
     record_move_target_selection_table(dict())
+    
+def get_move_target_q_learner(alpha, discount):
+    return QLearnerSimplePokemon(get_move_target_selection_table(), alpha, discount)

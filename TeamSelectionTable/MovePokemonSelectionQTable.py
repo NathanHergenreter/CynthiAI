@@ -11,6 +11,8 @@ if module_path not in sys.path:
 
 table_record_file_dir = sys.path[0] + '/../TeamSelectionTable/Records/MovePokemonSelectionTable.json'
 
+from QLearning.QLearnerSimplePokemon import *
+
 # Returns existing move-by-pokemon selection table recorded as json
 # If no json exists, returns empty dictionary
 def get_move_pokemon_selection_table():
@@ -28,4 +30,7 @@ def record_move_pokemon_selection_table(table):
 
 def reset_move_pokemon_selection_table_record():
     record_move_pokemon_selection_table(dict())
+    
+def get_move_pokemon_q_learner(alpha, discount):
+    return QLearnerSimplePokemon(get_move_pokemon_selection_table(), alpha, discount)
 

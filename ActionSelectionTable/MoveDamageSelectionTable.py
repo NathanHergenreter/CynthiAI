@@ -11,6 +11,8 @@ if module_path not in sys.path:
 
 table_record_file_dir = sys.path[0] + '/../ActionSelectionTable/Records/MoveDamageSelectionTable.json'
 
+from QLearning.QLearnerMoveDamage import *
+
 def get_keys():
     return ['one', 'two', 'three', 'four', 'five', 'six', 'n']
 
@@ -43,4 +45,7 @@ def reset_move_damage_selection_table():
         new_table[keys[i]] = dmg_dict
     
     record_move_damage_selection_table(new_table)
+    
+def get_move_damage_q_learner(alpha, discount):
+    return QLearnerMoveDamage(get_move_target_selection_table(), alpha, discount)
 
